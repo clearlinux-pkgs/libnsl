@@ -4,7 +4,7 @@
 #
 Name     : libnsl
 Version  : 1.2.0
-Release  : 1
+Release  : 2
 URL      : https://github.com/thkukuk/libnsl/archive/v1.2.0.tar.gz
 Source0  : https://github.com/thkukuk/libnsl/archive/v1.2.0.tar.gz
 Summary  : Library containing NIS functions using TI-RPC (IPv6 enabled)
@@ -44,7 +44,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517881984
+export SOURCE_DATE_EPOCH=1517889749
 %autogen --disable-static
 make  %{?_smp_mflags}
 
@@ -56,7 +56,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1517881984
+export SOURCE_DATE_EPOCH=1517889749
 rm -rf %{buildroot}
 %make_install
 
@@ -65,6 +65,8 @@ rm -rf %{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
+%exclude /usr/include/rpcsvc/yppasswd.h
+%exclude /usr/include/rpcsvc/yppasswd.x
 /usr/include/rpcsvc/nis.h
 /usr/include/rpcsvc/nis.x
 /usr/include/rpcsvc/nis_callback.h
@@ -76,8 +78,6 @@ rm -rf %{buildroot}
 /usr/include/rpcsvc/yp.x
 /usr/include/rpcsvc/yp_prot.h
 /usr/include/rpcsvc/ypclnt.h
-/usr/include/rpcsvc/yppasswd.h
-/usr/include/rpcsvc/yppasswd.x
 /usr/include/rpcsvc/ypupd.h
 /usr/lib64/libnsl.so
 /usr/lib64/pkgconfig/libnsl.pc
