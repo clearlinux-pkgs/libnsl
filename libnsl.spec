@@ -4,7 +4,7 @@
 #
 Name     : libnsl
 Version  : 1.3.0
-Release  : 4
+Release  : 5
 URL      : https://github.com/thkukuk/libnsl/releases/download/v1.3.0/libnsl-1.3.0.tar.xz
 Source0  : https://github.com/thkukuk/libnsl/releases/download/v1.3.0/libnsl-1.3.0.tar.xz
 Summary  : Library containing NIS functions using TI-RPC (IPv6 enabled)
@@ -56,7 +56,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1603859197
+export SOURCE_DATE_EPOCH=1620763961
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -73,14 +73,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1603859197
+export SOURCE_DATE_EPOCH=1620763961
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libnsl
 cp %{_builddir}/libnsl-1.3.0/COPYING %{buildroot}/usr/share/package-licenses/libnsl/01a6b4bf79aca9b556822601186afab86e8c4fbf
 %make_install
-## Remove excluded files
-rm -f %{buildroot}/usr/include/rpcsvc/yppasswd.x
-rm -f %{buildroot}/usr/include/rpcsvc/yppasswd.h
 
 %files
 %defattr(-,root,root,-)
@@ -98,6 +95,8 @@ rm -f %{buildroot}/usr/include/rpcsvc/yppasswd.h
 /usr/include/rpcsvc/yp.x
 /usr/include/rpcsvc/yp_prot.h
 /usr/include/rpcsvc/ypclnt.h
+/usr/include/rpcsvc/yppasswd.h
+/usr/include/rpcsvc/yppasswd.x
 /usr/include/rpcsvc/ypupd.h
 /usr/lib64/libnsl.so
 /usr/lib64/pkgconfig/libnsl.pc
